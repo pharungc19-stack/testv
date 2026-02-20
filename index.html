@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sabbath Shalom - Dickson's Descendants</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #F5EFE6;
+            color: #3E3E3E;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: auto;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .container {
+            max-width: 1024px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+            text-align: center;
+        }
+
+        .container-large {
+            max-width: 1536px;
+        }
+
+        /* HOME PAGE STYLES */
+        h1 {
+            font-size: 3.75rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            color: #3E3E3E;
+        }
+
+        .greeting-text {
+            font-size: 1.875rem;
+            margin-bottom: 1rem;
+            color: #3E3E3E;
+        }
+
+        .sub-greeting {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: #3E3E3E;
+        }
+
+        .image-container {
+            margin-bottom: 2rem;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            max-width: 672px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .verse-container {
+            max-width: 672px;
+            margin: 0 auto 2rem;
+        }
+
+        .verse-text {
+            font-size: 1.25rem;
+            line-height: 1.625;
+            margin-bottom: 1rem;
+            color: #3E3E3E;
+        }
+
+        .verse-reference {
+            font-size: 1.125rem;
+            font-style: italic;
+            color: #3E3E3E;
+        }
+
+        .button-container {
+            margin-top: 2rem;
+        }
+
+        .bless-button, .back-button {
+            padding: 0.75rem 2rem;
+            background: linear-gradient(to right, #9333ea, #2563eb);
+            color: white;
+            border: none;
+            border-radius: 9999px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            font-size: 1.125rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .bless-button:hover, .back-button:hover {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            transform: scale(1.05);
+        }
+
+        /* BLESSING PAGE STYLES */
+        .message-container {
+            max-width: 576px;
+            margin: 0 auto 3rem;
+        }
+
+        .message-text {
+            font-size: 1.25rem;
+            font-weight: bold;
+            line-height: 1.625;
+            margin-bottom: 3rem;
+            color: #3E3E3E;
+        }
+
+        .photo-frame {
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            padding: 0.5rem;
+            background: white;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            border-radius: 0.5rem;
+            display: block;
+        }
+
+        .main-image-container {
+            max-width: 1024px;
+            margin: 0 auto 2rem;
+        }
+
+        .main-image-container img {
+            height: 384px;
+            object-fit: cover;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            max-width: 672px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .grid-2 img {
+            height: 256px;
+            object-fit: cover;
+        }
+
+        .grid-2 .photo-frame:nth-child(2) img {
+            object-position: top;
+        }
+
+        .grid-large {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            max-width: 1280px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .grid-large img {
+            height: 320px;
+            object-fit: cover;
+        }
+
+        .final-image-container {
+            max-width: 1280px;
+            margin: 0 auto 3rem;
+        }
+
+        .final-image-container img {
+            height: 384px;
+            object-fit: cover;
+        }
+
+        .closing-text {
+            font-size: 1.125rem;
+            font-weight: bold;
+            line-height: 1.625;
+            margin-top: 2rem;
+            margin-bottom: 1.5rem;
+            color: #3E3E3E;
+        }
+
+        @media (min-width: 768px) {
+            h1 {
+                font-size: 4.5rem;
+            }
+
+            .greeting-text {
+                font-size: 2.25rem;
+            }
+
+            .sub-greeting {
+                font-size: 1.875rem;
+            }
+
+            .verse-text {
+                font-size: 1.5rem;
+            }
+
+            .message-text {
+                font-size: 1.5rem;
+            }
+
+            .closing-text {
+                font-size: 1.25rem;
+            }
+
+            .grid-large {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HOME PAGE -->
+    <div id="homePage" class="page active">
+        <div class="container">
+            <h1>Sabbath Shalom</h1>
+            <p class="greeting-text">
+                Blessed Sabbath to Dickson's descendants.
+            </p>
+            <p class="sub-greeting">
+                May you and our beautiful family be filled with peace and joy.
+            </p>
+            <div class="image-container">
+                <img src="images/house-of-prayer.png" alt="House of Prayer">
+            </div>
+            <div class="verse-container">
+                <p class="verse-text">
+                    "Remember the Sabbath day, to keep it holy."
+                </p>
+                <p class="verse-reference">
+                    Exodus 20:8
+                </p>
+            </div>
+            <div class="button-container">
+                <button class="bless-button" onclick="showBlessing()">Bless You</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- BLESSING PAGE -->
+    <div id="blessingPage" class="page">
+        <div class="container container-large">
+            <div class="message-container">
+                <p class="message-text">
+                    Cherish the good memories we share as a family<br>
+                    & always count the blessings God has granted you.
+                </p>
+            </div>
+
+            <div class="main-image-container photo-frame">
+                <img src="images/family-photo-2.png" alt="Family gathering">
+            </div>
+
+            <div class="grid-2">
+                <div class="photo-frame">
+                    <img src="images/family-photo-6.png" alt="Family indoor gathering">
+                </div>
+                <div class="photo-frame">
+                    <img src="images/family-photo-4.png" alt="Family moment with dog">
+                </div>
+            </div>
+
+            <div class="grid-large">
+                <div class="photo-frame">
+                    <img src="images/family-photo-3.png" alt="Family celebration">
+                </div>
+                <div class="photo-frame">
+                    <img src="images/family-photo-5.png" alt="Family outdoor gathering">
+                </div>
+            </div>
+
+            <div class="final-image-container photo-frame">
+                <img src="images/family-photo-7.png" alt="Family group photo outdoors">
+            </div>
+
+            <div class="closing-text">
+                <p>Ringkapa Sabbath, Vare na somida Sabbath sokhami ngasa rano.</p>
+            </div>
+
+            <button class="back-button" onclick="showHome()">Back to Home</button>
+        </div>
+    </div>
+
+    <script>
+        function showBlessing() {
+            document.getElementById('homePage').classList.remove('active');
+            document.getElementById('blessingPage').classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        function showHome() {
+            document.getElementById('blessingPage').classList.remove('active');
+            document.getElementById('homePage').classList.add('active');
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
