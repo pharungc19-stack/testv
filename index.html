@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sabbath Shalom - Dickson's Descendants</title>
-
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -36,16 +35,8 @@
       margin-bottom: 1.5rem;
       color: #3E3E3E;
     }
-    .greeting-text {
-      font-size: 1.875rem;
-      margin-bottom: 1rem;
-      color: #3E3E3E;
-    }
-    .sub-greeting {
-      font-size: 1.5rem;
-      margin-bottom: 2rem;
-      color: #3E3E3E;
-    }
+    .greeting-text { font-size: 1.875rem; margin-bottom: 1rem; }
+    .sub-greeting { font-size: 1.5rem; margin-bottom: 2rem; }
 
     .image-container {
       margin-bottom: 2rem;
@@ -59,8 +50,8 @@
     .image-container img { width: 100%; height: auto; display: block; }
 
     .verse-container { max-width: 672px; margin: 0 auto 2rem; }
-    .verse-text { font-size: 1.25rem; line-height: 1.625; margin-bottom: 1rem; color: #3E3E3E; }
-    .verse-reference { font-size: 1.125rem; font-style: italic; color: #3E3E3E; }
+    .verse-text { font-size: 1.25rem; line-height: 1.625; margin-bottom: 1rem; }
+    .verse-reference { font-size: 1.125rem; font-style: italic; }
 
     .button-container { margin-top: 2rem; }
 
@@ -83,7 +74,7 @@
     }
 
     .message-container { max-width: 576px; margin: 0 auto 3rem; }
-    .message-text { font-size: 1.25rem; font-weight: bold; line-height: 1.625; margin-bottom: 3rem; color: #3E3E3E; }
+    .message-text { font-size: 1.25rem; font-weight: bold; line-height: 1.625; margin-bottom: 3rem; }
 
     .photo-frame {
       border-radius: 0.75rem;
@@ -129,7 +120,6 @@
       line-height: 1.625;
       margin-top: 2rem;
       margin-bottom: 1.5rem;
-      color: #3E3E3E;
     }
 
     @media (min-width: 768px) {
@@ -141,15 +131,15 @@
       .closing-text { font-size: 1.25rem; }
       .grid-large { grid-template-columns: repeat(2, 1fr); }
     }
-
-    /* Helpful debug styling if an image fails */
-    img[data-img] {
-      background: rgba(0,0,0,0.04);
-    }
   </style>
 </head>
 
 <body>
+  <script>
+    // Images live in the OTHER repo: testv
+    const IMG_BASE = "https://raw.githubusercontent.com/pharungc19-stack/testv/main/images/";
+  </script>
+
   <!-- HOME PAGE -->
   <div id="homePage" class="page active">
     <div class="container">
@@ -158,7 +148,7 @@
       <p class="sub-greeting">May you and our beautiful family be filled with peace and joy.</p>
 
       <div class="image-container">
-        <img data-img="house-of-prayer.png" src="./images/house-of-prayer.png" alt="House of Prayer">
+        <img id="img-house" alt="House of Prayer">
       </div>
 
       <div class="verse-container">
@@ -183,29 +173,29 @@
       </div>
 
       <div class="main-image-container photo-frame">
-        <img data-img="family-photo-2.png" src="./images/family-photo-2.png" alt="Family gathering">
+        <img id="img-2" alt="Family gathering">
       </div>
 
       <div class="grid-2">
         <div class="photo-frame">
-          <img data-img="family-photo-6.png" src="./images/family-photo-6.png" alt="Family indoor gathering">
+          <img id="img-6" alt="Family indoor gathering">
         </div>
         <div class="photo-frame">
-          <img data-img="family-photo-4.png" src="./images/family-photo-4.png" alt="Family moment with dog">
+          <img id="img-4" alt="Family moment with dog">
         </div>
       </div>
 
       <div class="grid-large">
         <div class="photo-frame">
-          <img data-img="family-photo-3.png" src="./images/family-photo-3.png" alt="Family celebration">
+          <img id="img-3" alt="Family celebration">
         </div>
         <div class="photo-frame">
-          <img data-img="family-photo-5.png" src="./images/family-photo-5.png" alt="Family outdoor gathering">
+          <img id="img-5" alt="Family outdoor gathering">
         </div>
       </div>
 
       <div class="final-image-container photo-frame">
-        <img data-img="family-photo-7.png" src="./images/family-photo-7.png" alt="Family group photo outdoors">
+        <img id="img-7" alt="Family group photo outdoors">
       </div>
 
       <div class="closing-text">
@@ -217,6 +207,25 @@
   </div>
 
   <script>
+    // Set these filenames to EXACTLY what exists in testv/images (case-sensitive!)
+    const IMAGE_FILES = {
+      house: "house-of-prayer.png",
+      p2: "family-photo-2.png",
+      p3: "family-photo-3.png",
+      p4: "family-photo-4.png",
+      p5: "family-photo-5.png",
+      p6: "family-photo-6.png",
+      p7: "family-photo-7.png",
+    };
+
+    document.getElementById("img-house").src = IMG_BASE + IMAGE_FILES.house;
+    document.getElementById("img-2").src     = IMG_BASE + IMAGE_FILES.p2;
+    document.getElementById("img-3").src     = IMG_BASE + IMAGE_FILES.p3;
+    document.getElementById("img-4").src     = IMG_BASE + IMAGE_FILES.p4;
+    document.getElementById("img-5").src     = IMG_BASE + IMAGE_FILES.p5;
+    document.getElementById("img-6").src     = IMG_BASE + IMAGE_FILES.p6;
+    document.getElementById("img-7").src     = IMG_BASE + IMAGE_FILES.p7;
+
     function showBlessing() {
       document.getElementById('homePage').classList.remove('active');
       document.getElementById('blessingPage').classList.add('active');
@@ -228,33 +237,6 @@
       document.getElementById('homePage').classList.add('active');
       window.scrollTo(0, 0);
     }
-
-    // Fallback loader:
-    // If your repo images are .jpg/.jpeg/.PNG etc, this tries alternates automatically.
-    (function imageFallbacks() {
-      const extsToTry = ["png", "PNG", "jpg", "JPG", "jpeg", "JPEG", "webp", "WEBP"];
-      const imgs = document.querySelectorAll("img[data-img]");
-
-      imgs.forEach(img => {
-        img.addEventListener("error", () => {
-          const filename = img.getAttribute("data-img"); // e.g. family-photo-2.png
-          const base = filename.includes(".") ? filename.slice(0, filename.lastIndexOf(".")) : filename;
-
-          // Determine what we already tried
-          const tried = new Set();
-          tried.add(img.src);
-
-          // Try other extensions in order
-          for (const ext of extsToTry) {
-            const candidate = `${location.origin}${location.pathname.replace(/\/[^\/]*$/, "/")}images/${base}.${ext}`;
-            if (!tried.has(candidate)) {
-              img.src = candidate;
-              return;
-            }
-          }
-        }, { once: true });
-      });
-    })();
   </script>
 </body>
 </html>
