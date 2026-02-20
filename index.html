@@ -1,242 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sabbath Shalom - Dickson's Descendants</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sabbath Shalom - Dickson's Descendants</title>
 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-      background-color: #F5EFE6;
-      color: #3E3E3E;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: auto;
-    }
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #F5EFE6;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+}
 
-    .page { display: none; }
-    .page.active { display: block; }
+.page { display: none; }
+.page.active { display: block; }
 
-    .container {
-      max-width: 1024px;
-      margin: 0 auto;
-      padding: 3rem 1.5rem;
-      text-align: center;
-    }
-    .container-large { max-width: 1536px; }
+img {
+    width: 100%;
+    max-width: 700px;
+    height: auto;
+    margin: 20px auto;
+    display: block;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
 
-    h1 {
-      font-size: 3.75rem;
-      font-weight: bold;
-      margin-bottom: 1.5rem;
-      color: #3E3E3E;
-    }
-    .greeting-text { font-size: 1.875rem; margin-bottom: 1rem; }
-    .sub-greeting { font-size: 1.5rem; margin-bottom: 2rem; }
-
-    .image-container {
-      margin-bottom: 2rem;
-      border-radius: 1rem;
-      overflow: hidden;
-      box-shadow: 0 20px 25px -5px rgba(0,0,0,.1), 0 10px 10px -5px rgba(0,0,0,.04);
-      max-width: 672px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .image-container img { width: 100%; height: auto; display: block; }
-
-    .verse-container { max-width: 672px; margin: 0 auto 2rem; }
-    .verse-text { font-size: 1.25rem; line-height: 1.625; margin-bottom: 1rem; }
-    .verse-reference { font-size: 1.125rem; font-style: italic; }
-
-    .button-container { margin-top: 2rem; }
-
-    .bless-button, .back-button {
-      padding: 0.75rem 2rem;
-      background: linear-gradient(to right, #9333ea, #2563eb);
-      color: white;
-      border: none;
-      border-radius: 9999px;
-      box-shadow: 0 10px 15px -3px rgba(0,0,0,.1), 0 4px 6px -2px rgba(0,0,0,.05);
-      font-size: 1.125rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-decoration: none;
-      display: inline-block;
-    }
-    .bless-button:hover, .back-button:hover {
-      box-shadow: 0 20px 25px -5px rgba(0,0,0,.1), 0 10px 10px -5px rgba(0,0,0,.04);
-      transform: scale(1.05);
-    }
-
-    .message-container { max-width: 576px; margin: 0 auto 3rem; }
-    .message-text { font-size: 1.25rem; font-weight: bold; line-height: 1.625; margin-bottom: 3rem; }
-
-    .photo-frame {
-      border-radius: 0.75rem;
-      overflow: hidden;
-      box-shadow: 0 20px 25px -5px rgba(0,0,0,.1), 0 10px 10px -5px rgba(0,0,0,.04);
-      padding: 0.5rem;
-      background: white;
-    }
-    .photo-frame img { width: 100%; border-radius: 0.5rem; display: block; }
-
-    .main-image-container { max-width: 1024px; margin: 0 auto 2rem; }
-    .main-image-container img { height: 384px; object-fit: cover; }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem;
-      margin-bottom: 1.5rem;
-      max-width: 672px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .grid-2 img { height: 256px; object-fit: cover; }
-    .grid-2 .photo-frame:nth-child(2) img { object-position: top; }
-
-    .grid-large {
-      display: grid;
-      grid-template-columns: repeat(1, 1fr);
-      gap: 1.5rem;
-      margin-bottom: 3rem;
-      max-width: 1280px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .grid-large img { height: 320px; object-fit: cover; }
-
-    .final-image-container { max-width: 1280px; margin: 0 auto 3rem; }
-    .final-image-container img { height: 384px; object-fit: cover; }
-
-    .closing-text {
-      font-size: 1.125rem;
-      font-weight: bold;
-      line-height: 1.625;
-      margin-top: 2rem;
-      margin-bottom: 1.5rem;
-    }
-
-    @media (min-width: 768px) {
-      h1 { font-size: 4.5rem; }
-      .greeting-text { font-size: 2.25rem; }
-      .sub-greeting { font-size: 1.875rem; }
-      .verse-text { font-size: 1.5rem; }
-      .message-text { font-size: 1.5rem; }
-      .closing-text { font-size: 1.25rem; }
-      .grid-large { grid-template-columns: repeat(2, 1fr); }
-    }
-  </style>
+button {
+    padding: 12px 30px;
+    font-size: 16px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    background: linear-gradient(to right, #9333ea, #2563eb);
+    color: white;
+    margin-top: 20px;
+}
+</style>
 </head>
 
 <body>
-  <script>
-    // Images live in the OTHER repo: testv
-    const IMG_BASE = "https://raw.githubusercontent.com/pharungc19-stack/testv/main/images/";
-  </script>
 
-  <!-- HOME PAGE -->
-  <div id="homePage" class="page active">
-    <div class="container">
-      <h1>Sabbath Shalom</h1>
-      <p class="greeting-text">Blessed Sabbath to Dickson's descendants.</p>
-      <p class="sub-greeting">May you and our beautiful family be filled with peace and joy.</p>
+<!-- HOME PAGE -->
+<div id="homePage" class="page active">
+    <h1>Sabbath Shalom</h1>
+    <p>Blessed Sabbath to Dickson's descendants.</p>
+    <p>May you and our beautiful family be filled with peace and joy.</p>
 
-      <div class="image-container">
-        <img id="img-house" alt="House of Prayer">
-      </div>
+    <img id="homeImg" alt="House of Prayer">
 
-      <div class="verse-container">
-        <p class="verse-text">"Remember the Sabbath day, to keep it holy."</p>
-        <p class="verse-reference">Exodus 20:8</p>
-      </div>
+    <p><em>"Remember the Sabbath day, to keep it holy." — Exodus 20:8</em></p>
 
-      <div class="button-container">
-        <button class="bless-button" onclick="showBlessing()">Bless You</button>
-      </div>
-    </div>
-  </div>
+    <button onclick="showBlessing()">Bless You</button>
+</div>
 
-  <!-- BLESSING PAGE -->
-  <div id="blessingPage" class="page">
-    <div class="container container-large">
-      <div class="message-container">
-        <p class="message-text">
-          Cherish the good memories we share as a family<br>
-          &amp; always count the blessings God has granted you.
-        </p>
-      </div>
+<!-- BLESSING PAGE -->
+<div id="blessingPage" class="page">
+    <h2>Cherish the good memories we share as a family</h2>
 
-      <div class="main-image-container photo-frame">
-        <img id="img-2" alt="Family gathering">
-      </div>
+    <img id="mainImg" alt="Family gathering">
+    <img id="img2" alt="Family indoor gathering">
+    <img id="img3" alt="Family portrait">
+    <img id="img4" alt="Family celebration">
+    <img id="img5" alt="Family outdoor gathering">
+    <img id="img6" alt="Family group photo">
 
-      <div class="grid-2">
-        <div class="photo-frame">
-          <img id="img-6" alt="Family indoor gathering">
-        </div>
-        <div class="photo-frame">
-          <img id="img-4" alt="Family moment with dog">
-        </div>
-      </div>
+    <button onclick="showHome()">Back to Home</button>
+</div>
 
-      <div class="grid-large">
-        <div class="photo-frame">
-          <img id="img-3" alt="Family celebration">
-        </div>
-        <div class="photo-frame">
-          <img id="img-5" alt="Family outdoor gathering">
-        </div>
-      </div>
+<script>
+const IMG_BASE =
+"https://raw.githubusercontent.com/pharungc19-stack/testv/main/images/";
 
-      <div class="final-image-container photo-frame">
-        <img id="img-7" alt="Family group photo outdoors">
-      </div>
+// Utility setter (logs failure clearly)
+function setImage(id, filename) {
+    const el = document.getElementById(id);
+    if (!el) return;
 
-      <div class="closing-text">
-        <p>Ringkapa Sabbath, Vare na somida Sabbath sokhami ngasa rano.</p>
-      </div>
+    el.src = IMG_BASE + filename;
 
-      <button class="back-button" onclick="showHome()">Back to Home</button>
-    </div>
-  </div>
-
-  <script>
-    // Set these filenames to EXACTLY what exists in testv/images (case-sensitive!)
-    const IMAGE_FILES = {
-      house: "house-of-prayer.png",
-      p2: "family-photo-2.png",
-      p3: "family-photo-3.png",
-      p4: "family-photo-4.png",
-      p5: "family-photo-5.png",
-      p6: "family-photo-6.png",
-      p7: "family-photo-7.png",
+    el.onerror = function () {
+        console.error("IMAGE FAILED:", el.src);
+        el.style.border = "4px solid red";
     };
+}
 
-    document.getElementById("img-house").src = IMG_BASE + IMAGE_FILES.house;
-    document.getElementById("img-2").src     = IMG_BASE + IMAGE_FILES.p2;
-    document.getElementById("img-3").src     = IMG_BASE + IMAGE_FILES.p3;
-    document.getElementById("img-4").src     = IMG_BASE + IMAGE_FILES.p4;
-    document.getElementById("img-5").src     = IMG_BASE + IMAGE_FILES.p5;
-    document.getElementById("img-6").src     = IMG_BASE + IMAGE_FILES.p6;
-    document.getElementById("img-7").src     = IMG_BASE + IMAGE_FILES.p7;
+// Assign images (based on your screenshot filenames)
+setImage("homeImg", "house-of-prayer.png.jpg");
+setImage("mainImg", "family-photo-7.png.jpg");
+setImage("img2", "family-photo-2.png.jpg");
+setImage("img3", "family-photo-3.png.jpg");
+setImage("img4", "family-photo-4.png.jpg");
+setImage("img5", "family-photo-5.png.jpg");
+setImage("img6", "family-photo-6.png.jpg");
 
-    function showBlessing() {
-      document.getElementById('homePage').classList.remove('active');
-      document.getElementById('blessingPage').classList.add('active');
-      window.scrollTo(0, 0);
-    }
+function showBlessing() {
+    document.getElementById("homePage").classList.remove("active");
+    document.getElementById("blessingPage").classList.add("active");
+    window.scrollTo(0,0);
+}
 
-    function showHome() {
-      document.getElementById('blessingPage').classList.remove('active');
-      document.getElementById('homePage').classList.add('active');
-      window.scrollTo(0, 0);
-    }
-  </script>
+function showHome() {
+    document.getElementById("blessingPage").classList.remove("active");
+    document.getElementById("homePage").classList.add("active");
+    window.scrollTo(0,0);
+}
+</script>
+
 </body>
 </html>
